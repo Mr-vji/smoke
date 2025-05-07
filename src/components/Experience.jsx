@@ -6,22 +6,25 @@ import {
    Stage,
 } from "@react-three/drei";
 import { Smoke } from "./Smoke";
-import { useState } from "react";
-import { useControls } from "leva";
-import { Dish } from "./DIsh";
 import { Ui } from "./Ui";
 import { Modell } from "../Modell";
-import { Smoke2 } from "./Smoke2";
+import { useFrame, useThree } from "@react-three/fiber";
 
 export const Experience = () => {
+   const viewport = useThree((state) => state.viewport);
+
    return (
       <>
          <OrbitControls
-            makeDefault
-            // minPolarAngle={Math.PI * 0.1 - 2} // don't allow straight up
-            // maxPolarAngle={Math.PI / 2 - 0.2}
-            // minDistance={6 * 2}
-            // maxDistance={40}
+            enablePan={false}
+            minPolarAngle={Math.PI / 4}
+            maxPolarAngle={(3 * Math.PI) / 6}
+            minAzimuthAngle={-Math.PI / 4}
+            maxAzimuthAngle={Math.PI / 4}
+            minDistance={2}
+            maxDistance={20}
+            rotateSpeed={0.2}
+            zoomSpeed={0.5}
          />
          <Environment preset="city" />
          <directionalLight intensity={1} color={"white"} position={[0, 2, 3]} />

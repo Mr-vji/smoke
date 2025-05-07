@@ -12,7 +12,7 @@ body {
    background: #4762e6;
    background: radial-gradient(
       circle,
-      rgba(71, 98, 230, 1) 0%,
+      rgb(59, 82, 197) 0%,
       rgba(0, 0, 0, 1) 100%
    );
 }
