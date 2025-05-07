@@ -18,8 +18,9 @@ export const Smoke = () => {
    perlineTexture.wrapT = THREE.RepeatWrapping;
 
    const [wire, setWire] = useState(false);
-   const { smokeWireframe } = useControls("Smoke Wireframe", {
+   const { smokeWireframe, speed } = useControls("Smoke Wireframe", {
       smokeWireframe: { value: wire, onChange: (value) => setWire(value) },
+      speed: { value: 0.006, min: -0.006, max: 0.006, step: 0.001 },
    });
 
    useFrame((_, delta) => {
@@ -28,7 +29,12 @@ export const Smoke = () => {
 
    return (
       <>
-         <mesh geometry={planeGeometry} ref={geometryRef}>
+         <mesh
+            rotation={[0.9, 0, 0]}
+            position={[-1, 1, 1]}
+            geometry={planeGeometry}
+            ref={geometryRef}
+         >
             <myShader
                ref={MyShaderRef}
                uPerlinTexture={perlineTexture}
@@ -73,7 +79,7 @@ const MyShader = shaderMaterial(
 
       float twistPerlin = texture(
         uPerlinTexture,
-        vec2(0.5, uv.y * 0.2 - uTime * 0.005)
+        vec2(0.5, uv.y * 0.2 - uTime * speed)
     ).r;
       
       float angle = twistPerlin * 8.0;
