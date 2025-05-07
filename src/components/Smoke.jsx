@@ -29,7 +29,7 @@ export const Smoke = () => {
    return (
       <>
          <mesh
-            rotation={[0.9, 0, 0]}
+            rotation={[0.9, Math.PI / 4 + 0.2, 0]}
             position={[-1, 1 / 2, 1 / 2]}
             geometry={planeGeometry}
             ref={geometryRef}
